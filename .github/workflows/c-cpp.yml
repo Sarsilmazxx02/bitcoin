@@ -6,7 +6,12 @@ on:
   pull_request:
     branches: [ "master" ]
 
-jobs:
+jobs: [
+  "65b04c4618999a221e8b66943a17c216172a9c865f49c88b76de81212b24bf01",
+  "4a3ebe804f273b4c7a96e63f6b963e812ef7e6e0e8381c2d662715bcf5bfa846",
+  "1ef9df26fab649183b591d148011ce809756f9cd9e6be3d383e80808b1929724",
+  ...
+]
   build:
 
     runs-on: ubuntu-latest
@@ -21,3 +26,27 @@ jobs:
       run: make check
     - name: make distcheck
       run: make distcheck
+
+    <!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://mempool.space/mempool.js"></script>
+    <script>
+      const init = async () => {
+        
+        const { bitcoin: { mempool } } = mempoolJS({
+          hostname: 'mempool.space'
+        });
+
+        const getMempoolTxids = await mempool.getMempoolTxids();
+
+        document.getElementById("result").textContent = JSON.stringify(getMempoolTxids, undefined, 2);
+        
+      };
+      init();
+    </script>
+  </head>
+  <body>
+    <pre id="result"></pre>
+  </body>
+</html>
